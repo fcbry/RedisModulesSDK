@@ -19,7 +19,8 @@ int LogSet_RedisCommand(RedisModuleCtx *ctx, RedisModuleString **argv, int argc)
   // Check if value size > 4 bytes and log if so
   if (val_len > 4) {
     const char *key_str = RedisModule_StringPtrLen(argv[1], NULL);
-    printf("LOGSET: Key '%s' set with value of size %zu bytes\n", key_str, val_len);
+    RedisModule_Log(ctx, "warning", "LOGSET: Key '%s' set with value of size %zu bytes", key_str,
+                    val_len);
   }
   RedisModule_CloseKey(key);
   RedisModule_ReplyWithSimpleString(ctx, "OK");
