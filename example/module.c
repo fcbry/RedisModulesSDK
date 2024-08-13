@@ -28,7 +28,7 @@ int LogSet_RedisCommand(RedisModuleCtx *ctx, RedisModuleString **argv, int argc)
 }
 int RedisModule_OnLoad(RedisModuleCtx *ctx, RedisModuleString **argv, int argc) {
 
-  RedisModule_Log(ctx, "warning", "Loading LogSetModule");
+  printf("Loading LogSetModule\n");
 
   if (RedisModule_Init(ctx, "LogSetModule", 1, REDISMODULE_APIVER_1) == REDISMODULE_ERR) {
     return REDISMODULE_ERR;
@@ -37,5 +37,7 @@ int RedisModule_OnLoad(RedisModuleCtx *ctx, RedisModuleString **argv, int argc) 
       REDISMODULE_ERR) {
     return REDISMODULE_ERR;
   }
+
+  printf("Loading LogSetModule succeeded\n");
   return REDISMODULE_OK;
 }
